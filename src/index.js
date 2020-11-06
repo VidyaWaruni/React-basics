@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import JSON from './db.json'
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//components
+import Header from './components/header'
+import NewsList from './components/news_list'
+
+class App extends Component{
+
+  state = {
+    news:JSON
+  }
+
+  render(){
+    console.log(this.state.news)
+    return (
+      <div>
+        <Header/>
+        <NewsList news={this.state.news}>
+          <h3>The News are :</h3>
+        </NewsList>
+      </div>
+    )
+  }
+  
+}
+
+
+ReactDOM.render(<App/>,document.querySelector('#root'));
+
